@@ -1,0 +1,247 @@
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column; /* Allow title to be above app-container */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url('images/background.jpg'); /* Added background image */
+    background-size: cover; /* Cover the entire page */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    color: #E0E0E0; /* Light grey text for dark theme */
+    /* overflow: hidden; No longer needed here, app-container will manage overflow if any */
+}
+
+#app-title { /* New style for the title */
+    font-size: 3rem;
+    color: #FFD700; /* Yellow accent for title */
+    margin-bottom: 20px; /* Space between title and app container */
+    text-align: center;
+    font-family: 'Georgia', serif; /* A more 'wise' font */
+    text-shadow: 2px 2px 4px #000000; /* Shadow for better readability */
+}
+
+/* Removed #wallpaper styles */
+
+#app-container {
+    display: flex;
+    justify-content: center; /* Center panels if they don't take full width */
+    align-items: stretch; /* Make panels same height */
+    width: 90%; /* Or a fixed width like 1200px */
+    max-width: 1400px;
+    height: 80vh; /* Adjusted height to accommodate title */
+    max-height: 700px; /* Adjusted max-height */
+    background-color: rgba(30, 30, 30, 0.7); /* Increased transparency */
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); /* Darker shadow */
+    overflow: hidden; /* Important for rounded corners and contained layout */
+    border: 1px solid rgba(68, 68, 68, 0.6); /* Subtle border */
+}
+
+#sensei-cat-animation {
+    /* font-size: 10rem; Removed as it's an image now */
+    max-width: 80%; /* Adjust percentage as needed to control size within cat-panel */
+    max-height: 80%; /* Adjust percentage as needed */
+    object-fit: contain; /* Scales image down to fit, preserving aspect ratio */
+    animation: float 6s ease-in-out infinite;
+    transition: transform 0.5s ease-out;
+}
+
+/* Default floating animation */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(1deg); /* Slight rotation for more life */
+    }
+}
+
+/* Yawn Animation */
+@keyframes yawn-animation {
+    0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    20% { transform: scale(1.1, 0.8) rotate(-2deg); opacity: 0.8; } /* Mouth open wide, slight tilt */
+    50% { transform: scale(1.2, 0.7) rotate(-5deg); opacity: 0.7; } /* Peak of yawn */
+    80% { transform: scale(1.05, 0.9) rotate(1deg); opacity: 0.9; } /* Closing mouth */
+}
+
+/* Eye Narrowing Animation */
+@keyframes eye-narrowing-animation {
+    0%, 100% { transform: scaleY(1) rotate(0deg); }
+    50% { transform: scaleY(0.6) rotate(1deg); } /* Eyes narrowed, slight head tilt */
+    /* We can make this more expressive by changing the cat emoji content in JS, but CSS only is simpler for now */
+}
+
+/* Placeholder for yarn-batting - we can add this later */
+/*
+.animate-yarn-batting {
+    Define keyframes and animation properties
+}
+*/
+
+/* Yawn Animation - was for emoji, now for image: subtle bounce */
+@keyframes image-bounce-animation {
+    0%, 100% { transform: translateY(0) scale(1); }
+    25% { transform: translateY(-8px) scale(1.02); }
+    50% { transform: translateY(0) scale(1); }
+    75% { transform: translateY(-4px) scale(1.01); }
+}
+
+.animate-image-bounce { /* New class for image yawn */
+    animation: image-bounce-animation 2s ease-in-out 1 forwards; /* Duration doubled */
+}
+
+/* Eye Narrowing Animation - was for emoji, now for image: tilt and slight zoom */
+@keyframes image-tilt-zoom-animation {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(-3deg) scale(1.03); } /* Slight tilt and zoom */
+}
+
+.animate-image-tilt-zoom { /* New class for image eye-narrowing */
+    animation: image-tilt-zoom-animation 3s ease-in-out 1 forwards; /* Duration doubled */
+}
+
+/* --- Old Emoji-Specific Animations (Commented Out) --- */
+/*
+@keyframes yawn-animation {
+    0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    20% { transform: scale(1.1, 0.8) rotate(-2deg); opacity: 0.8; }
+    50% { transform: scale(1.2, 0.7) rotate(-5deg); opacity: 0.7; }
+    80% { transform: scale(1.05, 0.9) rotate(1deg); opacity: 0.9; }
+}
+.animate-yawn {
+    animation: yawn-animation 2.5s ease-in-out 1 forwards;
+}
+
+@keyframes eye-narrowing-animation {
+    0%, 100% { transform: scaleY(1) rotate(0deg); }
+    50% { transform: scaleY(0.6) rotate(1deg); }
+}
+.animate-eye-narrowing {
+    animation: eye-narrowing-animation 2s ease-in-out 1 forwards;
+}
+*/
+
+#chat-container {
+    width: 50%; /* Takes half of the app-container */
+    /* max-width: 600px; No longer needed if width is % based */
+    height: 100%; /* Take full height of app-container */
+    /* max-height: 700px; No longer needed */
+    background-color: rgba(45, 45, 45, 0.65); /* Increased transparency */
+    /* border-radius: 10px; Handled by app-container */
+    /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); Handled by app-container */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    /* z-index: 1; No longer needed */
+    border-right: 1px solid rgba(68, 68, 68, 0.4); /* Darker, slightly transparent separator line */
+}
+
+#cat-panel {
+    width: 50%; /* Takes the other half */
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(30, 30, 30, 0.65); /* Increased transparency */
+    overflow: hidden; /* In case cat animation goes wild */
+}
+
+#chat-history {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.message {
+    margin-bottom: 15px;
+    padding: 10px 15px;
+    border-radius: 20px;
+    max-width: 80%;
+    line-height: 1.4;
+    overflow-wrap: break-word; /* Keep this for breaking long words */
+    word-wrap: break-word; /* Older browsers support for overflow-wrap */
+    /* word-break: break-word; Removed for now to test if overflow-wrap is sufficient and less problematic */
+    height: auto; /* Explicitly set height to auto */
+    /* border: 1px solid red; */ /* Removed diagnostic border */
+}
+
+.user-message {
+    background-color: rgba(74, 74, 74, 0.75); /* Increased transparency */
+    color: #E0E0E0; /* Light grey text */
+    align-self: flex-end;
+    border-bottom-right-radius: 5px;
+}
+
+.bot-message {
+    background-color: rgba(139, 69, 19, 0.75); /* Increased transparency */
+    color: #FFD700; 
+    align-self: flex-start;
+    font-family: 'Roboto Mono', monospace;
+    font-style: italic;
+    font-weight: bold;
+    border-bottom-left-radius: 5px;
+    /* padding: 10px 15px; Inherited from .message, no need to repeat unless different */
+    /* min-height: 1em; Removed to allow natural height */
+}
+
+#input-area {
+    display: flex;
+    padding: 15px;
+    border-top: 1px solid rgba(68, 68, 68, 0.4); /* Darker, slightly transparent border */
+    background-color: rgba(40, 40, 40, 0.65); /* Increased transparency */
+}
+
+#user-input {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 1px solid rgba(85, 85, 85, 0.6); /* Slightly transparent darker border for input */
+    border-radius: 20px;
+    margin-right: 10px;
+    font-size: 1rem;
+    background-color: rgba(51, 51, 51, 0.7); /* Increased transparency */
+    color: #E0E0E0; /* Light text in input */
+}
+
+#user-input::placeholder {
+    color: #aaa; /* Lighter placeholder text */
+}
+
+#send-button {
+    padding: 10px 15px;
+    background-color: #FFD700; /* Yellow accent for send button */
+    color: #1e1e1e; /* Dark text on yellow button */
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+#send-button:hover {
+    background-color: #E6C300; /* Darker yellow on hover */
+}
+
+/* Scrollbar styling */
+#chat-history::-webkit-scrollbar {
+    width: 8px;
+}
+
+#chat-history::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+#chat-history::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+#chat-history::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
