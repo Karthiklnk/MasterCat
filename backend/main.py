@@ -10,13 +10,20 @@ load_dotenv()
 
 app = FastAPI()
 
-# CORS configuration
+# Configure CORS
+origins = [
+    "https://YOUR_GITHUB_USERNAME.github.io",  # Replace with your actual GitHub Pages URL (e.g., https://username.github.io/repositoryname)
+    "http://localhost:8000", # For local backend testing
+    "http://127.0.0.1:5500", # For VS Code Live Server default if you open index.html directly
+    # Add any other origins you might use for local frontend development
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # Allows all origins
+    allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"], # Allows all methods
-    allow_headers=["*"], # Allows all headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 client = Groq(api_key=os.environ.get("GROQ_API_KEY"))

@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
             addMessage(message, 'user'); // Add user message immediately
             userInput.value = ''; // Clear input field immediately
 
-            const response = await fetch('http://localhost:8000/chat', { 
+            const response = await fetch('https://mastercat.onrender.com/chat', { // Updated backend URL
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
